@@ -9,8 +9,8 @@ COPY prisma ./prisma/
 # Install dependencies
 RUN bun install --frozen-lockfile
 
-# Generate Prisma Client
-RUN bunx prisma generate
+# Generate Prisma Client (Needs dummy URL for validation)
+RUN DATABASE_URL="mysql://u:p@localhost:3306/db" bunx prisma generate
 
 # Copy source code
 COPY . .
