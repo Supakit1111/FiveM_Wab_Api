@@ -14,6 +14,7 @@ import { adminRoutes } from "./routes/admin.route";
 import { dashboardRoutes } from "./routes/dashboard.route";
 import { meRoutes } from "./routes/me.route";
 import { gangWalletRoutes } from "./routes/gang-wallet.route";
+import { presenceRoutes } from "./routes/presence.route";
 // ===== ตรวจ env =====
 if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not set");
@@ -64,6 +65,7 @@ const app = new Elysia()
   .group("/admin", adminRoutes as any)
   .group("/dashboard", dashboardRoutes as any)
   .group("/me", meRoutes as any)
+  .group("/presence", presenceRoutes as any)
   .use(gangWalletRoutes as any)
   .listen(
     {
