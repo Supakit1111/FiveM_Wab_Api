@@ -65,8 +65,14 @@ const app = new Elysia()
   .group("/dashboard", dashboardRoutes as any)
   .group("/me", meRoutes as any)
   .use(gangWalletRoutes as any)
-  .listen(process.env.PORT || 3000, ({ hostname, port }) => {
-    console.log(`🦊 Elysia is running at http://${hostname}:${port}`);
-  });
+  .listen(
+    {
+      port: Number(process.env.PORT || 3000),
+      hostname: "0.0.0.0",
+    },
+    ({ hostname, port }) => {
+      console.log(`🦊 Elysia is running at http://${hostname}:${port}`);
+    }
+  );
 
 export type App = typeof app;
