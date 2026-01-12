@@ -81,7 +81,7 @@ model ActionLog {
   id          Int      @id @default(autoincrement())
   performerId Int      @map("performer_id") // ID ของผู้กระทำ (Admin หรือ User)
   actionType  String // เช่น 'USER_CHECKIN', 'ADMIN_UPDATE_USER', 'USER_WITHDRAW'
-  details     String // รายละเอียดของการกระทำ
+  details     String   @db.Text // รายละเอียดของการกระทำ
   timestamp   DateTime @default(now())
 
   // เราไม่จำเป็นต้องสร้างความสัมพันธ์ @relation กับ User model ที่นี่ก็ได้
