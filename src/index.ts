@@ -28,7 +28,10 @@ if (!process.env.JWT_SECRET) {
 }
 
 // ===== Prisma (PostgreSQL) =====
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+  pool: { prepareThreshold: 0 } as any,
+});
 const prisma = new PrismaClient({ adapter });
 
 // ===== Elysia App =====
