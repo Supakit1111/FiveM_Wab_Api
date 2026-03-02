@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { Elysia } from "elysia";
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { swagger } from "@elysiajs/swagger";
 import { cors } from "@elysiajs/cors";
 import { jwt } from "@elysiajs/jwt";
@@ -27,7 +28,8 @@ if (!process.env.JWT_SECRET) {
 }
 
 // ===== Prisma (PostgreSQL) =====
-const prisma = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 // ===== Elysia App =====
 const app = new Elysia()
